@@ -61,7 +61,7 @@ public class PaintView extends View {
 
                 break;
             case MotionEvent.ACTION_UP:
-                drawing = false;
+                drawing = true;
 
                 break;
         }

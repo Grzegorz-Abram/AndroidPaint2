@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".PaintActivity" >
+
+    <pl.android.androidpaint.PaintView
+        android:id="@+id/PaintView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#ffffff" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#808080"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/button_drawing"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/drawing"
+            android:onClick="menuDrawing" />
+
+        <Button
+            android:id="@+id/button_eraser"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/eraser"
+            android:onClick="menuEraser" />
+
+        <Button
+            android:id="@+id/button_fill"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/fill"
+            android:onClick="menuFill" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#808080"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/button_open_save"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/open_save"
+            android:onClick="menuOpenSave" />
+
+        <Button
+            android:id="@+id/button_undo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/undo"
+            android:onClick="menuUndo" />
+
+        <Button
+            android:id="@+id/button_redo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/redo"
+            android:onClick="menuRedo" />
+
+        <Button
+            android:id="@+id/button_clear"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/clear"
+            android:onClick="menuClear" />
+    </LinearLayout>
+
+</LinearLayout>

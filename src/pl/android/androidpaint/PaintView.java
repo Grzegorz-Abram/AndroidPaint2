@@ -5,63 +5,86 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Cap;
+import android.graphics.Paint.Join;
 import android.graphics.Paint.Style;
 import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class PaintView extends View {
 
     private Paint paint;
     private Path path;
-    private boolean drawing = false;
+    private float mX, mY;
+    private static final float TOUCH_TOLERANCE = 4;
+    private ArrayList<FigureToDraw> figuresToDraw;
+    private ArrayList<FigureToDraw> figuresUndoed;
 
     public PaintView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         setFocusable(true);
 
+        path = new Path();
+
         paint = new Paint();
-        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        paint.setAntiAlias(true);
+        paint.setDither(true);
         paint.setColor(Color.RED);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(2);
         paint.setStyle(Style.STROKE);
+        paint.setStrokeJoin(Join.ROUND);
+        paint.setStrokeCap(Cap.ROUND);
+        paint.setStrokeWidth(2);
+
+        figuresToDraw = new ArrayList<FigureToDraw>();
+        figuresUndoed = new ArrayList<FigureToDraw>();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        try {
-            if (drawing) {
-                canvas.drawPath(path, paint);
-            }
-        } catch (Exception e) {
+        for (FigureToDraw figure : figuresToDraw) {
+            canvas.drawPath(figure.getPath(), figure.getPaint());
         }
+
+        canvas.drawPath(path, paint);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        float x = event.getX();
+        float y = event.getY();
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                path = new Path();
-
-                path.moveTo(event.getX(), event.getY());
-                path.lineTo(event.getX() + 1, event.getY() + 1);
+                path.reset();
+                path.moveTo(x, y);
+                path.lineTo(x + 1, y + 1);
+                mX = x;
+                mY = y;
 
                 break;
             case MotionEvent.ACTION_MOVE:
-                for (int j = 0; j < event.getHistorySize(); j++) {
-                    path.lineTo(event.getHistoricalX(j), event.getHistoricalY(j));
-                }
-                path.lineTo(event.getX(), event.getY());
+                float dx = Math.abs(x - mX);
+                float dy = Math.abs(y - mY);
 
-                drawing = true;
+                if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
+                    path.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
+                    mX = x;
+                    mY = y;
+                }
 
                 break;
             case MotionEvent.ACTION_UP:
-                drawing = true;
+                path.lineTo(mX, mY);
+
+                figuresUndoed.clear();
+                figuresToDraw.add(new FigureToDraw(new Path(path), new Paint(paint)));
+
+                path.reset();
 
                 break;
         }
@@ -69,5 +92,25 @@ public class PaintView extends View {
         invalidate();
 
         return true;
+    }
+
+    public void clear() {
+        figuresUndoed.clear();
+        figuresToDraw.clear();
+        invalidate();
+    }
+
+    public void undo() {
+        if (figuresToDraw.size() >= 1) {
+            figuresUndoed.add(figuresToDraw.remove(figuresToDraw.size() - 1));
+            invalidate();
+        }
+    }
+
+    public void redo() {
+        if (figuresUndoed.size() >= 1) {
+            figuresToDraw.add(figuresUndoed.remove(figuresUndoed.size() - 1));
+            invalidate();
+        }
     }
 }

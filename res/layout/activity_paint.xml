@@ -13,4 +13,94 @@
         android:layout_weight="1"
         android:background="#ffffff" />
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#808080" >
+
+        <ImageButton
+            android:id="@+id/button_drawing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button"
+            android:contentDescription="@android:attr/contentDescription"
+            android:onClick="menuDrawing"
+            android:padding="5dp"
+            android:src="@drawable/drawing" />
+
+        <ImageButton
+            android:id="@+id/button_eraser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button"
+            android:contentDescription="@android:attr/contentDescription"
+            android:onClick="menuEraser"
+            android:padding="5dp"
+            android:src="@drawable/eraser" />
+
+        <ImageButton
+            android:id="@+id/button_fill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button"
+            android:contentDescription="@android:attr/contentDescription"
+            android:onClick="menuFill"
+            android:padding="5dp"
+            android:src="@drawable/fill" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#808080" >
+
+        <ImageButton
+            android:id="@+id/button_open_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button"
+            android:contentDescription="@android:attr/contentDescription"
+            android:onClick="menuOpenSave"
+            android:padding="5dp"
+            android:src="@drawable/open_save" />
+
+        <ImageButton
+            android:id="@+id/button_undo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button"
+            android:contentDescription="@android:attr/contentDescription"
+            android:onClick="menuUndo"
+            android:padding="5dp"
+            android:src="@drawable/undo" />
+
+        <ImageButton
+            android:id="@+id/button_redo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button"
+            android:contentDescription="@android:attr/contentDescription"
+            android:onClick="menuRedo"
+            android:padding="5dp"
+            android:src="@drawable/redo" />
+
+        <ImageButton
+            android:id="@+id/button_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button"
+            android:contentDescription="@android:attr/contentDescription"
+            android:onClick="menuClear"
+            android:padding="5dp"
+            android:src="@drawable/clear" />
+    </LinearLayout>
+
 </LinearLayout>

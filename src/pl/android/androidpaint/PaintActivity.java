@@ -3,20 +3,25 @@ package pl.android.androidpaint;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import pl.android.androidpaint.ui.Message;
+import pl.android.androidpaint.util.ApplicationInfo;
 
 public class PaintActivity extends Activity {
+
+    private PaintView paintView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_paint);
+
+        paintView = (PaintView) findViewById(R.id.PaintView);
     }
 
     @Override
@@ -31,45 +36,48 @@ public class PaintActivity extends Activity {
 
         switch (item.getItemId()) {
             case R.id.menu_about:
-                about();
+                CharSequence message = getResources().getText(R.string.about_message);
+                CharSequence title = ApplicationInfo.getName(this) + " " + ApplicationInfo.getVersion(this);
+                Drawable icon = getResources().getDrawable(R.drawable.ic_launcher);
+
+                Message.showMessageOK(this, message, title, icon);
+
                 break;
             case R.id.menu_exit:
-                exit();
+                finish();
+                System.exit(0);
+
                 break;
         }
 
         return true;
     }
 
-    private void about() {
-        showMessage(getResources().getText(R.string.about_message));
+    public void menuDrawing(View view) {
+
     }
 
-    private void exit() {
-        finish();
-        System.exit(0);
+    public void menuEraser(View view) {
+
     }
 
-    private void showMessage(CharSequence message) {
-        String versionName = "";
+    public void menuFill(View view) {
 
-        try {
-            PackageInfo pinfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            versionName = pinfo.versionName;
-        } catch (NameNotFoundException e) {
-        }
+    }
 
-        AlertDialog ad = new AlertDialog.Builder(this).create();
-        ad.setCancelable(false);
-        ad.setMessage(message);
-        ad.setIcon(R.drawable.ic_launcher);
-        ad.setTitle(getResources().getText(R.string.app_name) + " " + versionName);
-        ad.setButton(getResources().getText(R.string.ok), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        ad.show();
+    public void menuOpenSave(View view) {
+
+    }
+
+    public void menuUndo(View view) {
+        paintView.undo();
+    }
+
+    public void menuRedo(View view) {
+        paintView.redo();
+    }
+
+    public void menuClear(View view) {
+        paintView.clear();
     }
 }

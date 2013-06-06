@@ -2,11 +2,10 @@
 <resources>
 
     <string name="app_name">AndroidPaint</string>
-    
     <string name="about">About</string>
     <string name="about_message">;-)</string>
     <string name="exit">Exit</string>
-    
     <string name="ok">OK</string>
-	
+    <string name="cancel">Cancel</string>
+
 </resources>

@@ -14,6 +14,100 @@
         android:background="#ffffff" />
 
     <LinearLayout
+        android:id="@+id/layout_parameters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:context=".DrawingActivity" >
+
+        <LinearLayout
+            android:id="@+id/layout_figure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@android:attr/contentDescription"
+                android:src="@drawable/eraser" />
+
+            <SeekBar
+                android:id="@+id/seekBar_figure"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/figure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Small Text"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@android:attr/contentDescription"
+                android:src="@drawable/drawing" />
+
+            <SeekBar
+                android:id="@+id/seekBar_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/size"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:ems="5"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center_vertical|center_horizontal"
+                android:inputType="number"
+                android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@android:attr/contentDescription"
+                android:src="@drawable/fill" />
+
+            <SeekBar
+                android:id="@+id/seekBar_color"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Small Text"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#808080" >
@@ -50,7 +144,6 @@
             android:onClick="menuFill"
             android:padding="5dp"
             android:src="@drawable/fill" />
-        
     </LinearLayout>
 
     <LinearLayout

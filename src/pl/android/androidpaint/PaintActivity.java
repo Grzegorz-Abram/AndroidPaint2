@@ -3,6 +3,7 @@ package pl.android.androidpaint;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +26,9 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
     private LinearLayout sizeLayout;
     private LinearLayout colorLayout;
     private TextView sizeDisplay;
+    private TextView colorDisplay;
     private SeekBar sizeSeekBar;
+    private SeekBar colorSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +39,22 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
         paintView = (PaintView) findViewById(R.id.PaintView);
 
         parametersLayout = (LinearLayout) findViewById(R.id.layout_parameters);
-        parametersLayout.setVisibility(View.GONE);
-
         figureLayout = (LinearLayout) findViewById(R.id.layout_figure);
-        figureLayout.setVisibility(View.GONE);
-
         sizeLayout = (LinearLayout) findViewById(R.id.layout_size);
-        sizeLayout.setVisibility(View.GONE);
-
         colorLayout = (LinearLayout) findViewById(R.id.layout_color);
-        colorLayout.setVisibility(View.GONE);
+
+        sizeDisplay = (TextView) findViewById(R.id.size);
+        colorDisplay = (TextView) findViewById(R.id.color);
 
         sizeSeekBar = (SeekBar) findViewById(R.id.seekBar_size);
         sizeSeekBar.setOnSeekBarChangeListener(this);
 
-        sizeDisplay = (TextView) findViewById(R.id.size);
+        colorSeekBar = (SeekBar) findViewById(R.id.seekBar_color);
+        colorSeekBar.setOnSeekBarChangeListener(this);
 
+        parametersLayout.setVisibility(View.GONE);
         sizeSeekBar.setProgress(9);
+        colorSeekBar.setProgress(Color.RED);
     }
 
     @Override
@@ -141,9 +143,16 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        progress++;
-        sizeDisplay.setText(String.valueOf(progress));
-        paintView.setSize(progress);
+        if (seekBar.getId() == sizeSeekBar.getId()) {
+            int size = progress + 1;
+            sizeDisplay.setText(String.valueOf(size));
+            paintView.setSize(size);
+        } else if (seekBar.getId() == colorSeekBar.getId()) {
+            int color = progress - 16777216;
+            colorDisplay.setText(String.valueOf(color));
+            colorDisplay.setBackgroundColor(color);
+            paintView.setColor(color);
+        }
     }
 
     @Override

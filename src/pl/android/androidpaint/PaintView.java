@@ -3,7 +3,6 @@ package pl.android.androidpaint;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Cap;
 import android.graphics.Paint.Join;
@@ -34,7 +33,6 @@ public class PaintView extends View {
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setDither(true);
-        paint.setColor(Color.RED);
         paint.setStyle(Style.STROKE);
         paint.setStrokeJoin(Join.ROUND);
         paint.setStrokeCap(Cap.ROUND);
@@ -115,5 +113,9 @@ public class PaintView extends View {
 
     public void setSize(int size) {
         paint.setStrokeWidth(size);
+    }
+
+    public void setColor(int color) {
+        paint.setColor(color);
     }
 }

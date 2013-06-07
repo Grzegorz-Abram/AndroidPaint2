@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -21,12 +20,12 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
     public static final int PICK_DRAWING_REQUEST = 1;
 
     private PaintView paintView;
-    private LinearLayout layoutParameters;
-    private LinearLayout layoutFigure;
-    private LinearLayout layoutSize;
-    private LinearLayout layoutColor;
-    private EditText size;
-    private SeekBar seekBarSize;
+    private LinearLayout parametersLayout;
+    private LinearLayout figureLayout;
+    private LinearLayout sizeLayout;
+    private LinearLayout colorLayout;
+    private TextView sizeDisplay;
+    private SeekBar sizeSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,22 +35,24 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
 
         paintView = (PaintView) findViewById(R.id.PaintView);
 
-        layoutParameters = (LinearLayout) findViewById(R.id.layout_parameters);
-        layoutParameters.setVisibility(View.GONE);
+        parametersLayout = (LinearLayout) findViewById(R.id.layout_parameters);
+        parametersLayout.setVisibility(View.GONE);
 
-        layoutFigure = (LinearLayout) findViewById(R.id.layout_figure);
-        layoutFigure.setVisibility(View.GONE);
+        figureLayout = (LinearLayout) findViewById(R.id.layout_figure);
+        figureLayout.setVisibility(View.GONE);
 
-        layoutSize = (LinearLayout) findViewById(R.id.layout_size);
-        layoutSize.setVisibility(View.GONE);
+        sizeLayout = (LinearLayout) findViewById(R.id.layout_size);
+        sizeLayout.setVisibility(View.GONE);
 
-        layoutColor = (LinearLayout) findViewById(R.id.layout_color);
-        layoutColor.setVisibility(View.GONE);
+        colorLayout = (LinearLayout) findViewById(R.id.layout_color);
+        colorLayout.setVisibility(View.GONE);
 
-        seekBarSize = (SeekBar) findViewById(R.id.seekBar_size);
-        seekBarSize.setOnSeekBarChangeListener(this);
+        sizeSeekBar = (SeekBar) findViewById(R.id.seekBar_size);
+        sizeSeekBar.setOnSeekBarChangeListener(this);
 
-        size = (EditText) findViewById(R.id.size);
+        sizeDisplay = (TextView) findViewById(R.id.size);
+
+        sizeSeekBar.setProgress(9);
     }
 
     @Override
@@ -67,7 +68,8 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
         switch (item.getItemId()) {
             case R.id.menu_about:
                 CharSequence message = getResources().getText(R.string.about_message);
-                CharSequence title = ApplicationInfo.getName(this) + " " + ApplicationInfo.getVersion(this);
+                CharSequence title = ApplicationInfo.getName(this) + " "
+                        + ApplicationInfo.getVersion(this);
                 Drawable icon = getResources().getDrawable(R.drawable.ic_launcher);
 
                 Message.showMessageOK(this, message, title, icon);
@@ -112,34 +114,35 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
     }
 
     private void showParameters(boolean figure, boolean size, boolean color) {
-        if (layoutParameters.getVisibility() != View.VISIBLE) {
-            layoutParameters.setVisibility(View.VISIBLE);
+        if (parametersLayout.getVisibility() != View.VISIBLE) {
+            parametersLayout.setVisibility(View.VISIBLE);
         } else {
-            layoutParameters.setVisibility(View.GONE);
+            parametersLayout.setVisibility(View.GONE);
         }
 
         if (figure) {
-            layoutFigure.setVisibility(View.VISIBLE);
+            figureLayout.setVisibility(View.VISIBLE);
         } else {
-            layoutFigure.setVisibility(View.GONE);
+            figureLayout.setVisibility(View.GONE);
         }
 
         if (size) {
-            layoutSize.setVisibility(View.VISIBLE);
+            sizeLayout.setVisibility(View.VISIBLE);
         } else {
-            layoutSize.setVisibility(View.GONE);
+            sizeLayout.setVisibility(View.GONE);
         }
 
         if (color) {
-            layoutColor.setVisibility(View.VISIBLE);
+            colorLayout.setVisibility(View.VISIBLE);
         } else {
-            layoutColor.setVisibility(View.GONE);
+            colorLayout.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        size.setText(String.valueOf(progress));
+        progress++;
+        sizeDisplay.setText(String.valueOf(progress));
         paintView.setSize(progress);
     }
 

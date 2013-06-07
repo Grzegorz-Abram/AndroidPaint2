@@ -38,7 +38,6 @@ public class PaintView extends View {
         paint.setStyle(Style.STROKE);
         paint.setStrokeJoin(Join.ROUND);
         paint.setStrokeCap(Cap.ROUND);
-        paint.setStrokeWidth(0);
 
         figuresToDraw = new ArrayList<FigureToDraw>();
         figuresUndoed = new ArrayList<FigureToDraw>();

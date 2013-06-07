@@ -53,8 +53,8 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
         colorSeekBar.setOnSeekBarChangeListener(this);
 
         parametersLayout.setVisibility(View.GONE);
-        sizeSeekBar.setProgress(9);
-        colorSeekBar.setProgress(Color.RED);
+        sizeSeekBar.setProgress(10 - 1);
+        colorSeekBar.setProgress(Color.RED + 16777216);
     }
 
     @Override

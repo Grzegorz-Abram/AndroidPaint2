@@ -86,18 +86,12 @@
                 android:contentDescription="@android:attr/contentDescription"
                 android:src="@drawable/fill" />
 
-            <SeekBar
-                android:id="@+id/seekBar_color"
+            <pl.android.androidpaint.ColorPickerView
+                android:id="@+id/colorPickerView1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:max="16777215" />
+                android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minEms="5" />
         </LinearLayout>
     </LinearLayout>
 

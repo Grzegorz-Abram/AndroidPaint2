@@ -3,7 +3,6 @@ package pl.android.androidpaint;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,9 +25,7 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
     private LinearLayout sizeLayout;
     private LinearLayout colorLayout;
     private TextView sizeDisplay;
-    private TextView colorDisplay;
     private SeekBar sizeSeekBar;
-    private SeekBar colorSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +41,12 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
         colorLayout = (LinearLayout) findViewById(R.id.layout_color);
 
         sizeDisplay = (TextView) findViewById(R.id.size);
-        colorDisplay = (TextView) findViewById(R.id.color);
 
         sizeSeekBar = (SeekBar) findViewById(R.id.seekBar_size);
         sizeSeekBar.setOnSeekBarChangeListener(this);
 
-        colorSeekBar = (SeekBar) findViewById(R.id.seekBar_color);
-        colorSeekBar.setOnSeekBarChangeListener(this);
-
         parametersLayout.setVisibility(View.GONE);
         sizeSeekBar.setProgress(10 - 1);
-        colorSeekBar.setProgress(Color.RED + 16777216);
     }
 
     @Override
@@ -147,11 +139,6 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
             int size = progress + 1;
             sizeDisplay.setText(String.valueOf(size));
             paintView.setSize(size);
-        } else if (seekBar.getId() == colorSeekBar.getId()) {
-            int color = progress - 16777216;
-            colorDisplay.setText(String.valueOf(color));
-            colorDisplay.setBackgroundColor(color);
-            paintView.setColor(color);
         }
     }
 

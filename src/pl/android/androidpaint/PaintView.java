@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class PaintView extends View {
 
-    private Paint paint;
+    public static Paint paint;
     private Path path;
     private float mX, mY;
     private static final float TOUCH_TOLERANCE = 4;
@@ -43,6 +43,8 @@ public class PaintView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        paint.setColor(ColorPickerView.color);
+
         for (FigureToDraw figure : figuresToDraw) {
             canvas.drawPath(figure.getPath(), figure.getPaint());
         }
@@ -113,9 +115,5 @@ public class PaintView extends View {
 
     public void setSize(int size) {
         paint.setStrokeWidth(size);
-    }
-
-    public void setColor(int color) {
-        paint.setColor(color);
     }
 }

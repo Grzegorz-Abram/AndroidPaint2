@@ -19,7 +19,11 @@ public class ColorPickerView extends View {
     private final int[] mColors;
     private int widthBar;
     boolean stop;
-    public static int color = Color.RED;
+    private static int color = Color.RED;
+
+    public static int getColor() {
+        return color;
+    }
 
     public ColorPickerView(Context context, AttributeSet attrs) {
         super(context, attrs);

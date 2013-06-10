@@ -10,16 +10,13 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.util.AttributeSet;
 import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 
-public class ColorPicker extends SeekBar implements OnSeekBarChangeListener {
+public class ColorPicker extends SeekBar {
 
     private final int[] mColors;
-    private static int color = Color.RED;
 
     public ColorPicker(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setOnSeekBarChangeListener(this);
 
         mColors = new int[] {
                 0xFFFF0000, 0xFFFF00FF, 0xFF0000FF, 0xFF00FFFF, 0xFF00FF00,
@@ -70,24 +67,10 @@ public class ColorPicker extends SeekBar implements OnSeekBarChangeListener {
         return Color.argb(a, r, g, b);
     }
 
-    public static int getColor() {
-        return color;
-    }
-
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+    public int getColor() {
         int max = getMax();
-        float unit = (float) progress / max;
-        color = interpColor(mColors, unit);
-    }
+        float unit = (float) getProgress() / max;
 
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-
+        return interpColor(mColors, unit);
     }
 }

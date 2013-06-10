@@ -22,6 +22,8 @@ public class PaintView extends View {
     private static final float TOUCH_TOLERANCE = 4;
     private ArrayList<FigureToDraw> figuresToDraw;
     private ArrayList<FigureToDraw> figuresUndoed;
+    private int color;
+    private int size;
 
     public PaintView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -43,8 +45,8 @@ public class PaintView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        paint.setColor(ColorPicker.getColor());
-        paint.setStrokeWidth(SizePicker.getSize());
+        paint.setColor(color);
+        paint.setStrokeWidth(size);
 
         for (FigureToDraw figure : figuresToDraw) {
             canvas.drawPath(figure.getPath(), figure.getPaint());
@@ -112,5 +114,13 @@ public class PaintView extends View {
             figuresToDraw.add(figuresUndoed.remove(figuresUndoed.size() - 1));
             invalidate();
         }
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }

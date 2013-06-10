@@ -31,17 +31,38 @@
             android:layout_marginRight="10dp"
             android:gravity="center" >
 
-            <ImageView
+            <RadioGroup
+                android:id="@+id/radioGroup1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@android:attr/contentDescription"
-                android:src="@drawable/eraser" />
+                android:layout_gravity="center"
+                android:orientation="horizontal" >
 
-            <SeekBar
-                android:id="@+id/seekBar_figure"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:checked="true"
+                    android:drawableRight="@drawable/freehand" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:drawableRight="@drawable/circle" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:drawableRight="@drawable/rectangle" />
+            </RadioGroup>
         </LinearLayout>
 
         <LinearLayout
@@ -55,8 +76,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:contentDescription="@android:attr/contentDescription"
-                android:src="@drawable/drawing" />
+                android:src="@drawable/size" />
 
             <pl.android.androidpaint.SizePicker
                 android:id="@+id/sizePicker"
@@ -64,29 +86,30 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:max="50" />
-
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:gravity="center" >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:contentDescription="@android:attr/contentDescription"
-                android:src="@drawable/fill" />
+                android:src="@drawable/color" />
 
             <pl.android.androidpaint.ColorPicker
                 android:id="@+id/colorPicker"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
-
         </LinearLayout>
     </LinearLayout>
 

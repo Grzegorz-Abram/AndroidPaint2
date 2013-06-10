@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
 
 import pl.android.androidpaint.ui.Message;
 import pl.android.androidpaint.util.ApplicationInfo;
@@ -20,11 +19,12 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
     public static final int PICK_DRAWING_REQUEST = 1;
 
     private PaintView paintView;
+
     private LinearLayout parametersLayout;
     private LinearLayout figureLayout;
     private LinearLayout sizeLayout;
     private LinearLayout colorLayout;
-    private TextView sizeDisplay;
+
     private SeekBar sizeSeekBar;
 
     @Override
@@ -39,8 +39,6 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
         figureLayout = (LinearLayout) findViewById(R.id.layout_figure);
         sizeLayout = (LinearLayout) findViewById(R.id.layout_size);
         colorLayout = (LinearLayout) findViewById(R.id.layout_color);
-
-        sizeDisplay = (TextView) findViewById(R.id.size);
 
         sizeSeekBar = (SeekBar) findViewById(R.id.seekBar_size);
         sizeSeekBar.setOnSeekBarChangeListener(this);
@@ -137,7 +135,6 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar.getId() == sizeSeekBar.getId()) {
             int size = progress + 1;
-            sizeDisplay.setText(String.valueOf(size));
             paintView.setSize(size);
         }
     }

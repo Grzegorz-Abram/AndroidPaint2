@@ -27,6 +27,8 @@
             android:id="@+id/layout_figure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="center" >
 
             <ImageView
@@ -40,17 +42,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/figure"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="center" >
 
             <ImageView
@@ -65,19 +64,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:max="49" />
-
-            <TextView
-                android:id="@+id/size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minEms="1" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="center" >
 
             <ImageView
@@ -86,8 +80,8 @@
                 android:contentDescription="@android:attr/contentDescription"
                 android:src="@drawable/fill" />
 
-            <pl.android.androidpaint.ColorPickerView
-                android:id="@+id/colorPickerView1"
+            <pl.android.androidpaint.ColorPicker
+                android:id="@+id/colorPicker"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />

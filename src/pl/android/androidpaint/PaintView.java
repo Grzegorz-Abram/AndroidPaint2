@@ -43,7 +43,7 @@ public class PaintView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        paint.setColor(ColorPickerView.getColor());
+        paint.setColor(ColorPicker.getColor());
 
         for (FigureToDraw figure : figuresToDraw) {
             canvas.drawPath(figure.getPath(), figure.getPaint());

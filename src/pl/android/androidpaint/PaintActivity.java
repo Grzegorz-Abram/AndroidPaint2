@@ -8,13 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import pl.android.androidpaint.ui.Message;
 import pl.android.androidpaint.util.ApplicationInfo;
 
-public class PaintActivity extends Activity implements OnSeekBarChangeListener {
+public class PaintActivity extends Activity {
 
     public static final int PICK_DRAWING_REQUEST = 1;
 
@@ -24,8 +22,6 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
     private LinearLayout figureLayout;
     private LinearLayout sizeLayout;
     private LinearLayout colorLayout;
-
-    private SeekBar sizeSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +36,7 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
         sizeLayout = (LinearLayout) findViewById(R.id.layout_size);
         colorLayout = (LinearLayout) findViewById(R.id.layout_color);
 
-        sizeSeekBar = (SeekBar) findViewById(R.id.seekBar_size);
-        sizeSeekBar.setOnSeekBarChangeListener(this);
-
         parametersLayout.setVisibility(View.GONE);
-        sizeSeekBar.setProgress(10 - 1);
     }
 
     @Override
@@ -129,21 +121,5 @@ public class PaintActivity extends Activity implements OnSeekBarChangeListener {
         } else {
             colorLayout.setVisibility(View.GONE);
         }
-    }
-
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (seekBar.getId() == sizeSeekBar.getId()) {
-            int size = progress + 1;
-            paintView.setSize(size);
-        }
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
     }
 }

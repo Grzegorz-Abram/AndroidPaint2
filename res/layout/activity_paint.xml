@@ -58,12 +58,13 @@
                 android:contentDescription="@android:attr/contentDescription"
                 android:src="@drawable/drawing" />
 
-            <SeekBar
-                android:id="@+id/seekBar_size"
+            <pl.android.androidpaint.SizePicker
+                android:id="@+id/sizePicker"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:max="49" />
+                android:max="50" />
+
         </LinearLayout>
 
         <LinearLayout

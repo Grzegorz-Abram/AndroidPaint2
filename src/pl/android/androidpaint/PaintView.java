@@ -44,6 +44,7 @@ public class PaintView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         paint.setColor(ColorPicker.getColor());
+        paint.setStrokeWidth(SizePicker.getSize());
 
         for (FigureToDraw figure : figuresToDraw) {
             canvas.drawPath(figure.getPath(), figure.getPaint());
@@ -111,9 +112,5 @@ public class PaintView extends View {
             figuresToDraw.add(figuresUndoed.remove(figuresUndoed.size() - 1));
             invalidate();
         }
-    }
-
-    public void setSize(int size) {
-        paint.setStrokeWidth(size);
     }
 }

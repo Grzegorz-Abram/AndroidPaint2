@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class PaintView extends View {
 
-    public static Paint paint;
+    private Paint paint;
     private Path path;
     private float mX, mY;
     private static final float TOUCH_TOLERANCE = 4;

@@ -16,8 +16,6 @@ import pl.android.androidpaint.util.ApplicationInfo;
 
 public class PaintActivity extends Activity implements OnSeekBarChangeListener {
 
-    public static final int PICK_DRAWING_REQUEST = 1;
-
     private PaintView paintView;
 
     private LinearLayout parametersLayout;

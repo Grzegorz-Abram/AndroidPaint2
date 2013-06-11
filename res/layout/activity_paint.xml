@@ -42,31 +42,44 @@
 
                 <RadioButton
                     android:id="@+id/radio0"
+                    style="@drawable/radiobutton_freehand"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="7dp"
-                    android:checked="true"
-                    android:drawableRight="@drawable/freehand" />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/radiobutton_freehand"
+                    android:button="@drawable/radiobutton_freehand"
+                    android:checked="true" />
 
                 <RadioButton
                     android:id="@+id/radio1"
+                    style="@drawable/radiobutton_line"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="7dp"
-                    android:drawableRight="@drawable/line" />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/radiobutton_line"
+                    android:button="@drawable/radiobutton_line" />
 
                 <RadioButton
                     android:id="@+id/radio2"
+                    style="@drawable/radiobutton_rectangle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="7dp"
-                    android:drawableRight="@drawable/rectangle" />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/radiobutton_rectangle"
+                    android:button="@drawable/radiobutton_rectangle" />
 
                 <RadioButton
                     android:id="@+id/radio3"
+                    style="@drawable/radiobutton_circle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/circle" />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/radiobutton_circle"
+                    android:button="@drawable/radiobutton_circle" />
             </RadioGroup>
         </LinearLayout>
 

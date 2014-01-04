@@ -1,4 +1,3 @@
-
 package pl.android.androidpaint;
 
 import android.os.Bundle;
@@ -16,138 +15,156 @@ import pl.android.androidpaint.util.ApplicationInfo;
 
 public class PaintActivity extends Activity implements OnSeekBarChangeListener {
 
-    private PaintView paintView;
+	private PaintView paintView;
 
-    private LinearLayout parametersLayout;
-    private LinearLayout figureLayout;
-    private LinearLayout sizeLayout;
-    private LinearLayout colorLayout;
+	private LinearLayout upperMenu;
+	private LinearLayout lowerMenu;
+	private LinearLayout parametersLayout;
+	private LinearLayout figureLayout;
+	private LinearLayout sizeLayout;
+	private LinearLayout colorLayout;
 
-    private ColorPicker colorPicker;
-    private SizePicker sizePicker;
+	private ColorPicker colorPicker;
+	private SizePicker sizePicker;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	private boolean babyMode = false;
 
-        setContentView(R.layout.activity_paint);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        paintView = (PaintView) findViewById(R.id.PaintView);
+		setContentView(R.layout.activity_paint);
 
-        parametersLayout = (LinearLayout) findViewById(R.id.layout_parameters);
-        figureLayout = (LinearLayout) findViewById(R.id.layout_figure);
-        sizeLayout = (LinearLayout) findViewById(R.id.layout_size);
-        colorLayout = (LinearLayout) findViewById(R.id.layout_color);
+		paintView = (PaintView) findViewById(R.id.PaintView);
 
-        colorPicker = (ColorPicker) findViewById(R.id.colorPicker);
-        colorPicker.setOnSeekBarChangeListener(this);
+		upperMenu = (LinearLayout) findViewById(R.id.upper_menu);
+		lowerMenu = (LinearLayout) findViewById(R.id.lower_menu);
 
-        sizePicker = (SizePicker) findViewById(R.id.sizePicker);
-        sizePicker.setOnSeekBarChangeListener(this);
+		parametersLayout = (LinearLayout) findViewById(R.id.layout_parameters);
+		figureLayout = (LinearLayout) findViewById(R.id.layout_figure);
+		sizeLayout = (LinearLayout) findViewById(R.id.layout_size);
+		colorLayout = (LinearLayout) findViewById(R.id.layout_color);
 
-        parametersLayout.setVisibility(View.GONE);
+		colorPicker = (ColorPicker) findViewById(R.id.colorPicker);
+		colorPicker.setOnSeekBarChangeListener(this);
 
-        paintView.setColor(colorPicker.getColor());
-        paintView.setSize(sizePicker.getSize());
-    }
+		sizePicker = (SizePicker) findViewById(R.id.sizePicker);
+		sizePicker.setOnSeekBarChangeListener(this);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+		parametersLayout.setVisibility(View.GONE);
 
-        return true;
-    }
+		paintView.setColor(colorPicker.getColor());
+		paintView.setSize(sizePicker.getSize());
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
 
-        switch (item.getItemId()) {
-            case R.id.menu_about:
-                CharSequence message = getResources().getText(R.string.about_message);
-                CharSequence title = ApplicationInfo.getName(this) + " "
-                        + ApplicationInfo.getVersion(this);
-                Drawable icon = getResources().getDrawable(R.drawable.ic_launcher);
+		return true;
+	}
 
-                Message.showMessageOK(this, message, title, icon);
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
 
-                break;
-            case R.id.menu_exit:
-                finish();
-                System.exit(0);
+		switch (item.getItemId()) {
+		case R.id.menu_about:
+			CharSequence message = getResources().getText(
+					R.string.about_message);
+			CharSequence title = ApplicationInfo.getName(this) + " "
+					+ ApplicationInfo.getVersion(this);
+			Drawable icon = getResources().getDrawable(R.drawable.ic_launcher);
 
-                break;
-        }
+			Message.showMessageOK(this, message, title, icon);
 
-        return true;
-    }
+			break;
+		case R.id.menu_exit:
+			finish();
+			System.exit(0);
 
-    public void menuDrawing(View view) {
-        showParameters(true, true, true);
-    }
+			break;
+		}
 
-    public void menuEraser(View view) {
-        showParameters(false, true, false);
-    }
+		return true;
+	}
 
-    public void menuFill(View view) {
-        showParameters(false, false, true);
-    }
+	public void menuDrawing(View view) {
+		showParameters(true, true, true);
+	}
 
-    public void menuOpenSave(View view) {
+	public void menuEraser(View view) {
+		showParameters(false, true, false);
+	}
 
-    }
+	public void menuFill(View view) {
+		showParameters(false, false, true);
+	}
 
-    public void menuUndo(View view) {
-        paintView.undo();
-    }
+	public void menuOpenSave(View view) {
 
-    public void menuRedo(View view) {
-        paintView.redo();
-    }
+	}
 
-    public void menuClear(View view) {
-        paintView.clear();
-    }
+	public void menuUndo(View view) {
+		paintView.undo();
+	}
 
-    private void showParameters(boolean figure, boolean size, boolean color) {
-        if (parametersLayout.getVisibility() != View.VISIBLE) {
-            parametersLayout.setVisibility(View.VISIBLE);
-        } else {
-            parametersLayout.setVisibility(View.GONE);
-        }
+	public void menuRedo(View view) {
+		paintView.redo();
+	}
 
-        if (figure) {
-            figureLayout.setVisibility(View.VISIBLE);
-        } else {
-            figureLayout.setVisibility(View.GONE);
-        }
+	public void menuClear(View view) {
+		paintView.clear();
+	}
 
-        if (size) {
-            sizeLayout.setVisibility(View.VISIBLE);
-        } else {
-            sizeLayout.setVisibility(View.GONE);
-        }
+	public void menuBaby(View view) {
+		paintView.clear();
+		paintView.setColor(0xFFFF0000);
+		paintView.setSize(20);
+		upperMenu.setVisibility(View.GONE);
+		lowerMenu.setVisibility(View.GONE);
+		babyMode = true;
+	}
 
-        if (color) {
-            colorLayout.setVisibility(View.VISIBLE);
-        } else {
-            colorLayout.setVisibility(View.GONE);
-        }
-    }
+	private void showParameters(boolean figure, boolean size, boolean color) {
+		if (parametersLayout.getVisibility() != View.VISIBLE) {
+			parametersLayout.setVisibility(View.VISIBLE);
+		} else {
+			parametersLayout.setVisibility(View.GONE);
+		}
 
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        paintView.setColor(colorPicker.getColor());
-        paintView.setSize(sizePicker.getSize());
-    }
+		if (figure) {
+			figureLayout.setVisibility(View.VISIBLE);
+		} else {
+			figureLayout.setVisibility(View.GONE);
+		}
 
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
+		if (size) {
+			sizeLayout.setVisibility(View.VISIBLE);
+		} else {
+			sizeLayout.setVisibility(View.GONE);
+		}
 
-    }
+		if (color) {
+			colorLayout.setVisibility(View.VISIBLE);
+		} else {
+			colorLayout.setVisibility(View.GONE);
+		}
+	}
 
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromUser) {
+		paintView.setColor(colorPicker.getColor());
+		paintView.setSize(sizePicker.getSize());
+	}
 
-    }
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+
+	}
 }

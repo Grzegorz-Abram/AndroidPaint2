@@ -134,6 +134,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/upper_menu"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#808080" >
@@ -173,6 +174,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lower_menu"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#808080" >
@@ -220,6 +222,17 @@
             android:onClick="menuClear"
             android:padding="5dp"
             android:src="@drawable/clear" />
+
+        <ImageButton
+            android:id="@+id/button_baby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button"
+            android:contentDescription="@android:attr/contentDescription"
+            android:onClick="menuBaby"
+            android:padding="5dp"
+            android:src="@drawable/baby" />
     </LinearLayout>
 
 </LinearLayout>
